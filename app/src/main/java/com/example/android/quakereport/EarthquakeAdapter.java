@@ -39,9 +39,25 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         magnitudeView.setText(currentEarthquake.getMag());
 
         // Find the TextView with view ID location
-        TextView locationView = (TextView) listView.findViewById(R.id.location);
+        TextView primaryLocView = (TextView) listView.findViewById(R.id.primarylocation);
+        TextView nearToLocView = (TextView) listView.findViewById(R.id.neartolocation);
         // Display the location of the current earthquake in that TextView
-        locationView.setText(currentEarthquake.getLocation());
+        String place = currentEarthquake.getLocation();
+        String nearToLoc;
+        String primaryLoc;
+        if (place.contains("of")) {
+            int index = place.indexOf("of");
+            nearToLoc = place.substring(0, index);
+            primaryLoc = place.substring(index, place.length());
+        }
+        else {
+            nearToLoc = "Near the";
+            primaryLoc = place;
+        }
+        nearToLocView.setText(nearToLoc);
+        primaryLocView.setText(primaryLoc);
+
+
 
         // Create a new Date object from the time in milliseconds of the earthquake
         Date dateObject = new Date(currentEarthquake.getTimeInMilliseconds());
@@ -63,6 +79,7 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // Return the list item view that is now showing the appropriate data
         return listView;
     }
+
     /**
      * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
      */
@@ -78,4 +95,6 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
         return timeFormat.format(dateObject);
     }
+
+
 }

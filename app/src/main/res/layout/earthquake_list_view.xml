@@ -14,8 +14,15 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/location"
-        tools:text="Location"
+        android:id="@+id/neartolocation"
+        tools:text=""
+        android:layout_weight="2"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/primarylocation"
+        tools:text=""
         android:layout_weight="2"/>
 
     <TextView
