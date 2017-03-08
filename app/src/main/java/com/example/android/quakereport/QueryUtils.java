@@ -66,9 +66,10 @@ public final class QueryUtils {
 //            Extract “place” for location
                 String place = prop.getString("place");
 //            Extract “time” for time
-                String time = prop.getString("time");
+                long timeInMilliseconds = prop.getLong("time");
+
 //            Create Earthquake java object from magnitude, location, and time
-                earthquakes.add(new Earthquake(mag, place, time));
+                earthquakes.add(new Earthquake(mag, place, timeInMilliseconds));
 
             }
         } catch (JSONException e) {
